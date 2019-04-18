@@ -22,10 +22,24 @@ $returnvalue = shell_exec('/var/www/html/execute_modele.sh'.' '.$url.' '.$filena
 $retourappel = array();
 if ($returnvalue == 1 )
     {
-        //calculer la liste de zones limitŽe aux premieres zones ( > indice confiance)
+        // pour les tests : 
+        echo '<a href=http://label-finder.agoralogie.fr/data/list_zone_'.$filename.'.txt>zones</a><br>';
+        echo '<img src=http://label-finder.agoralogie.fr/data/sred_'.$filename.'.jpg><br>';
+        echo '<img src=http://label-finder.agoralogie.fr/data/detect_'.$filename.'.jpg><br>';
+        
+        
+        //calculer la liste de zones limitŽe aux premieres zones ( > indice confiance) dans var/www/html/data/list_zone_'.$filename.'.txt
+        
         // calculer l'image avec zone blanche si $fileout==1
-         $retourappel[success]=1;
-         echo '<img src=http://label-finder.agoralogie.fr/detect_'.$filename.'.jpg';
+        if($fileout==1)
+            {
+                //calcule une image avec les zones (> confiance)blanchies depuis le fichier source
+                $retourappel[url]="http://label-finder.agoralogie.fr/data/censored_".$filename.'.jpg';
+            }
+        
+        $retourappel[success]=1;
+        
+        
     }
     else
     {
