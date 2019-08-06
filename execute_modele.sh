@@ -1,7 +1,7 @@
 #lance le programme python d'analyse de l'image
 cd  /home/fileapi
-rm *
-wget $1
+rm *jpg
+wget "$1"
 mv * source.jpg
 if [ -f /home/fileapi/source.jpg ]
 then
