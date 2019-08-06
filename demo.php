@@ -31,8 +31,8 @@ if (!isset($_POST['url'])){
 		</form>';
 	}else {
 
-	
-		$fichier_a_appeler = "http://label-finder.agoralogie.fr/find.php?source=".trim($_POST['url'])."&key=klxqjhfsgf&fileout=1&confidence=".$_POST['confiance'];
+		$url = filter_var($_POST['url'], FILTER_SANITIZE_URL);
+		$fichier_a_appeler = "http://label-finder.agoralogie.fr/find.php?source=".trim($url)."&key=klxqjhfsgf&fileout=1&confidence=".$_POST['confiance'];
 	
 		$retour_file = file($fichier_a_appeler);
 
