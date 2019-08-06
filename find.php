@@ -25,7 +25,7 @@ $filename=UUID::v4();
 
 $limite_confiance = ($_GET['confidence'] *100) /100; //to be sure it is a number
 
-$returnvalue = shell_exec('/var/www/html/execute_modele.sh'.' '.$url.' '.$filename);
+$returnvalue = shell_exec('/var/www/html/execute_modele.sh'.' \''.$url.'\' '.$filename);
 
 $retourappel = array();
 if ($returnvalue == 1 ){
@@ -34,7 +34,7 @@ if ($returnvalue == 1 ){
        // echo '<img src=http://label-finder.agoralogie.fr/data/sred_'.$filename.'.jpg><br>';
        // echo '<img src=http://label-finder.agoralogie.fr/data/detect_'.$filename.'.jpg><br>';
         
-        //calculer la liste de zones limitŽe aux premieres zones ( > indice confiance) dans var/www/html/data/list_zone_'.$filename.'.txt
+        //calculer la liste de zones limitÅ½e aux premieres zones ( > indice confiance) dans var/www/html/data/list_zone_'.$filename.'.txt
 		$current = file_get_contents('http://label-finder.agoralogie.fr/data/list_zone_'.$filename.'.txt');
 		$liste = trim($current);
 		$liste = str_replace('[[','[',$liste);
@@ -104,7 +104,7 @@ function traite_image($nom_image,$tab_rectangle,$new_nom_image){
 	$white = imagecolorallocate($source, 255, 255, 255);
 
 	// par exemple : $tab_rectangle = array("0.8332,0,0.9977,0.5035,0.9521","0.9304,0.788,0.9956,1,0.2563");
-	// pour chaque élément du tableau (pour chaque rectangle)
+	// pour chaque Ã©lÃ©ment du tableau (pour chaque rectangle)
 	for ($i=0; $i<count($tab_rectangle); $i++){
 		$coordonnees = $tab_rectangle[$i];
 		$tab_coordonnees = explode(",", $coordonnees);
@@ -124,7 +124,7 @@ function traite_image($nom_image,$tab_rectangle,$new_nom_image){
 	}
 	
 	imagejpeg($source,$new_nom_image); //enregistre une nouvelle image
-	imagedestroy($source); //détruit l'image, libérant ainsi de la mémoire
+	imagedestroy($source); //dÃ©truit l'image, libÃ©rant ainsi de la mÃ©moire
 
 
 }	
